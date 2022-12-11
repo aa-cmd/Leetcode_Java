@@ -7,18 +7,17 @@ public class Solution {
         ListNode fake = new ListNode(0);
         ListNode p = fake;
 
-        ListNode p1 = l1;
-        ListNode p2 = l2;
         int carry = 0;
-        while(p1 != null || p2 != null) {
-            int sum = carry;
-            if(p1 != null){
-                sum += p1.val;
-                p1 = p1.next;
+        int sum = 0;
+        while(l1 != null || l2 != null) {
+            sum = carry;
+            if(l1 != null){
+                sum += l1.val;
+                l1 = l1.next;
             }
-            if(p2 != null){
-                sum += p2.val;
-                p2 = p2.next;
+            if(l2 != null){
+                sum += l2.val;
+                l2 = l2.next;
             }
             if(sum > 9){
                 carry= 1;
@@ -26,13 +25,11 @@ public class Solution {
             }else{
                 carry = 0;
             }
-            ListNode l  = new ListNode(sum);
-            p.next = l;
+            p.next = new ListNode(sum);
             p = p.next;
         }
         if(carry > 0) { 
-            ListNode l = new ListNode(carry);
-            p.next = l;
+            p.next = new ListNode(carry);
         }
         return fake.next;
     }
